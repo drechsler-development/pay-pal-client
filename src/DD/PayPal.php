@@ -177,7 +177,7 @@ class PayPal {
 	 * @throws PayPalAlreadyCaputeredException
 	 * @throws Exception
 	 */
-	public function CaptureOrder ($orderId) : void {
+	public function CaptureOrder ($orderId): void {
 
 		$this->Authenticate ();
 
@@ -204,17 +204,18 @@ class PayPal {
 
 		curl_close ($ch);
 
-		$array = json_decode ($response, true);
+		$array = json_decode (json_encode (json_decode ($response, true)), true);
 
-		$intend = $array['intend'] ?? '';
-		if($intend === 'CAPTURE'){
+		$intend = $array['intent'] ?? '';
+
+		if ($intend === 'CAPTURE') {
 			$status = $array['status'] ?? '';
-			if($status === 'COMPLETED'){
+			if ($status === 'COMPLETED') {
 				return;
-			}else{
+			} else {
 				throw new Exception('Order status is not COMPLETED');
 			}
-		}else {
+		} else {
 
 			$details          = $array['details'] ?? [];
 			$detailsFirstNode = $details[0] ?? '';
@@ -222,7 +223,7 @@ class PayPal {
 
 			if ($issue == 'ORDER_ALREADY_CAPTURED') {
 				throw new PayPalAlreadyCaputeredException('Order already captured');
-			}else{
+			} else {
 				throw new Exception('Order could not be captured for an unknown reason (yet)');
 			}
 
