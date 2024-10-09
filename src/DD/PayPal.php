@@ -19,7 +19,7 @@ class PayPal {
 
 		$this->clientId     = $clientId;
 		$this->clientSecret = $clientSecret;
-		$this->url          = $isSandbox ? self::PAYPAL_API_URL_PROD : self::PAYPAL_API_URL_TEST;
+		$this->url          = $isSandbox ? self::PAYPAL_API_URL_TEST : self::PAYPAL_API_URL_PROD;
 
 	}
 
