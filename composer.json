@@ -1,0 +1,27 @@
+{
+    "name": "drechsler-development/pay-pal-client",
+    "description": "a simple PayPal Client you can use in your projects",
+    "keywords": [
+        "PayPal",
+        "Simple PayPal",
+        "class library",
+        "helper classes"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DD\\": "src/DD"
+        }
+    },
+    "authors": [
+        {
+            "name": "ronny.drechsler-hildebrandt",
+            "email": "info@drechsler-development.de"
+        }
+    ],
+    "require": {
+        "ext-curl": "*",
+        "ext-json": "*"
+    }
+}

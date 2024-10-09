@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^success$ success.php [L]
+RewriteRule ^cancel$ cancel.php [L]
