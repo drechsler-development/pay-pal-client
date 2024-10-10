@@ -177,7 +177,7 @@ class PayPal {
 	 * @throws PayPalAlreadyCaputeredException
 	 * @throws Exception
 	 */
-	public function CaptureOrder ($orderId): void {
+	public function CaptureOrder ($orderId): string {
 
 		$this->Authenticate ();
 
@@ -211,7 +211,14 @@ class PayPal {
 		if ($intend === 'CAPTURE') {
 			$status = $array['status'] ?? '';
 			if ($status === 'COMPLETED') {
-				return;
+
+				$captureId = $array['purchase_units'][0]['payments']['captures'][0]['id'] ?? '';
+				if(empty($captureId)){
+					throw new Exception('No capture id found in response');
+				}
+
+				return $captureId;
+
 			} else {
 				throw new Exception('Order status is not COMPLETED');
 			}
