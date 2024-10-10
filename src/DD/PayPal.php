@@ -173,7 +173,7 @@ class PayPal {
 	/**
 	 * @param $orderId
 	 *
-	 * @return void
+	 * @return string
 	 * @throws PayPalAlreadyCaputeredException
 	 * @throws Exception
 	 */
